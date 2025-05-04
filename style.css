@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+#video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 25px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  transition: background 0.3s, color 0.3s;
+  box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.profile-card.dark {
+  background: rgba(20, 20, 20, 0.7);
+  color: #eee;
+  box-shadow: 0px 8px 60px -10px rgba(255, 255, 255, 0.2);
+}
+
+.profile-card-img {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: -75px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid #fff;
+  box-shadow: 0px 5px 30px rgba(108, 68, 252, 0.5);
+}
+
+.profile-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card-info .name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 90px;
+  color: #6c44fc;
+}
+
+.profile-card.dark .name {
+  color: #c7b7ff;
+}
+
+.profile-card-info .position,
+.profile-card-info .location {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.profile-card-social {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  justify-items: center;
+}
+
+.profile-card-social .item {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  transition: transform 0.3s ease;
+}
+
+.profile-card-social .item:hover {
+  transform: scale(1.1);
+}
+
+/* Màu nền các mạng xã hội */
+.facebook { background: linear-gradient(45deg, #3b5998, #0078d7); }
+.instagram { background: linear-gradient(45deg, #f33, #f6f6f6); }
+.threads { background: linear-gradient(45deg, #000, #303030); }
+.telegram { background: linear-gradient(45deg, #0088cc, #006a85); }
+.twitter { background: linear-gradient(45deg, #00acee, #0088cc); }
+.tiktok { background: linear-gradient(45deg, #000000, #25f4ee); }
+.soundcloud { background: linear-gradient(45deg, #ff7700, #ff5500); }
+.youtube { background: linear-gradient(45deg, #ff0000, #cc0000); }
+
+.back-button, .theme-toggle {
+  position: absolute;
+  top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.profile-card.dark .back-button,
+.profile-card.dark .theme-toggle {
+  color: #eee;
+}
+
+.back-button {
+  left: 15px;
+}
+
+.theme-toggle {
+  right: 15px;
+}
+
+.konichiwa {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff66b2;
+  margin-bottom: 10px;
+}
+
+.greeting-message {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+#greeting-message::first-letter {
+  text-transform: uppercase;
+}
+
+#play-music {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  background: #6c44fc;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#play-music:hover {
+  background: #5733cc;
+}
+
+.notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s ease;
+}
+
+.notification-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.notification-overlay.hide {
+  animation: fadeOutScale 0.6s forwards;
+}
+
+@keyframes fadeOutScale {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+audio {
+  display: none;
+}

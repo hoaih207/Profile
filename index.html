@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <div id="video-container">
+    <video autoplay muted loop id="background-video">
+      <source src="./background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="notification-overlay" id="notification">
+    <div class="notification-box">
+      <div class="konichiwa">Konichiwa!</div>
+      <div class="greeting-message" id="greeting-message">Chúc bạn một ngày vui vẻ!</div>
+      <button id="play-music">OK</button>
+      <audio id="bg-music" src="https://files.catbox.moe/btqq56.mp3" loop></audio>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="profile-card" id="profile-card">
+      <button class="back-button" id="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button class="theme-toggle" id="toggle-theme">
+        <i class="fa-solid fa-sun"></i>
+      </button>
+
+      <div class="profile-card-img">
+        <img src="https://files.catbox.moe/vjmtqi.jpg" alt="Profile Picture">
+      </div>
+
+      <div class="profile-card-info">
+        <div class="name">Mai Xuân Hoài</div>
+        <div class="position">Chúc Bạn Một Ngày Vui Vẻ ❤</div>
+        <div class="location">
+          <i class="fa-solid fa-map-location"></i> Quang Binh, Viet Nam
+        </div>
+      </div>
+
+      <div class="profile-card-social">
+        <a href="https://www.facebook.com/Hoaihh207" class="item facebook" target="_blank">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/hoaih207" class="item instagram" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.threads.com/@hoaih207" class="item threads" target="_blank">
+          <i class="fa-brands fa-threads"></i>
+        </a>
+        <a href="https://t.me/hoaih207" class="item telegram" target="_blank">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+        <a href="https://x.com/hoaih207" class="item twitter" target="_blank">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a href="https://www.tiktok.com/@hoaih207" class="item tiktok" target="_blank">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://soundcloud.com/hoaihh207" class="item soundcloud" target="_blank">
+          <i class="fa-brands fa-soundcloud"></i>
+        </a>
+        <a href="https://www.youtube.com/@hoaih207" class="item youtube" target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("toggle-theme");
+    const card = document.getElementById("profile-card");
+    const backBtn = document.getElementById("back-button");
+    const music = document.getElementById("bg-music");
+    const notification = document.getElementById("notification");
+    let dark = false;
+
+    // Greeting by time
+    const greetingMessage = document.getElementById("greeting-message");
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 11) {
+      greetingMessage.textContent = "Chúc bạn buổi sáng vui vẻ!";
+    } else if (hour >= 11 && hour < 14) {
+      greetingMessage.textContent = "Chúc bạn buổi trưa vui vẻ!";
+    } else if (hour >= 14 && hour < 18) {
+      greetingMessage.textContent = "Chúc bạn buổi chiều vui vẻ!";
+    } else {
+      greetingMessage.textContent = "Chúc bạn buổi tối vui vẻ!";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      dark = !dark;
+      card.classList.toggle("dark");
+      toggleBtn.innerHTML = dark
+        ? '<i class="fa-solid fa-moon"></i>'
+        : '<i class="fa-solid fa-sun"></i>';
+    });
+
+    document.getElementById("play-music").addEventListener("click", () => {
+      music.play();
+      notification.classList.add("hide");
+    });
+  </script>
+</body>
+</html>
