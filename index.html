@@ -1,114 +1,505 @@
+
+<canvas id="sakura"></canvas>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon" />
+    <link rel="android-chrome" sizes="192x192" href="img/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Mai Xuân Hoài</title>
+  </head>
+</head>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𝙆𝙤𝙣𝙣𝙞𝙘𝙝𝙞𝙬𝙖</title>
 </head>
 <body>
-
-  <div id="video-container">
-    <video autoplay muted loop id="background-video">
-      <source src="./background.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <div class="notification-overlay" id="notification">
-    <div class="notification-box">
-      <div class="konichiwa">Konichiwa!</div>
-      <div class="greeting-message" id="greeting-message">Chúc bạn một ngày vui vẻ!</div>
-      <button id="play-music">OK</button>
-      <audio id="bg-music" src="./phim-ba-nguoi.mp3" loop></audio>
+  <div id="thongbao">
+    <div id="thongbao-noi-dung">
+      <div id="loading"></div>
+      <div class="ball"></div>
+      <p>𝙆𝙤𝙣𝙣𝙞𝙘𝙝𝙞𝙬𝙖</p>
+      <p>Chúc bạn một ngày vui vẻ</p>
+      
+      <audio id="audio" controls loop>
+  <source src="không-qua-được-vòng-luân-hồi-silver-smoke-remix-8d.mp3" type="audio/mpeg">
+  Trình duyệt của bạn không hỗ trợ audio.
+</audio>
+      <button id="thongbao-nut">OK</button>
     </div>
   </div>
-
-  <div class="wrapper">
-    <div class="profile-card" id="profile-card">
-      <button class="back-button" id="back-button">
-        <i class="fa-solid fa-arrow-left"></i>
-      </button>
-      <button class="theme-toggle" id="toggle-theme">
-        <i class="fa-solid fa-sun"></i>
-      </button>
-
-      <div class="profile-card-img">
-        <img src="https://files.catbox.moe/vjmtqi.jpg" alt="Profile Picture">
-      </div>
-
-      <div class="profile-card-info">
-        <div class="name">Mai Xuân Hoài</div>
-        <div class="position">Chúc Bạn Một Ngày Vui Vẻ ❤</div>
-        <div class="location">
-          <i class="fa-solid fa-map-location"></i> Quang Binh, Viet Nam
-        </div>
-      </div>
-
-      <div class="profile-card-social">
-        <a href="https://www.facebook.com/Hoaihh207" class="item facebook" target="_blank">
-          <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/hoaih207" class="item instagram" target="_blank">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://www.threads.com/@hoaih207" class="item threads" target="_blank">
-          <i class="fa-brands fa-threads"></i>
-        </a>
-        <a href="https://t.me/hoaih207" class="item telegram" target="_blank">
-          <i class="fa-brands fa-telegram"></i>
-        </a>
-        <a href="https://x.com/hoaih207" class="item twitter" target="_blank">
-          <i class="fa-brands fa-twitter"></i>
-        </a>
-        <a href="https://www.tiktok.com/@hoaih207" class="item tiktok" target="_blank">
-          <i class="fa-brands fa-tiktok"></i>
-        </a>
-        <a href="https://soundcloud.com/hoaihh207" class="item soundcloud" target="_blank">
-          <i class="fa-brands fa-soundcloud"></i>
-        </a>
-        <a href="https://www.youtube.com/@hoaih207" class="item youtube" target="_blank">
-          <i class="fa-brands fa-youtube"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const toggleBtn = document.getElementById("toggle-theme");
-    const card = document.getElementById("profile-card");
-    const backBtn = document.getElementById("back-button");
-    const music = document.getElementById("bg-music");
-    const notification = document.getElementById("notification");
-    let dark = false;
-
-    // Greeting by time
-    const greetingMessage = document.getElementById("greeting-message");
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 11) {
-      greetingMessage.textContent = "Chúc bạn buổi sáng vui vẻ!";
-    } else if (hour >= 11 && hour < 14) {
-      greetingMessage.textContent = "Chúc bạn buổi trưa vui vẻ!";
-    } else if (hour >= 14 && hour < 18) {
-      greetingMessage.textContent = "Chúc bạn buổi chiều vui vẻ!";
-    } else {
-      greetingMessage.textContent = "Chúc bạn buổi tối vui vẻ!";
-    }
-
-    toggleBtn.addEventListener("click", () => {
-      dark = !dark;
-      card.classList.toggle("dark");
-      toggleBtn.innerHTML = dark
-        ? '<i class="fa-solid fa-moon"></i>'
-        : '<i class="fa-solid fa-sun"></i>';
-    });
-
-    document.getElementById("play-music").addEventListener("click", () => {
-      music.play();
-      notification.classList.add("hide");
-    });
-  </script>
 </body>
 </html>
+
+
+</html>
+
+  <body>
+    <div class="app">
+      <div class="card mg-10">
+        <div class="card__title">
+          <div class="card__title--img">
+            <img src="./icon.png" alt="" srcset="" />
+          </div>
+          <div class="card__title--name">
+            <h1>Mai Xuân Hoài</h1>
+            <div class="veri__check">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="card__title--description">
+            <p>𝙆𝙤𝙣𝙣𝙞𝙘𝙝𝙞𝙬𝙖</p>
+          </div>
+        </div>
+        <div class="card__body mt-10">
+          <div class="row">
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a
+                  href="https://www.facebook.com/share/1Hfyqew12H/"
+                  target="_blank"
+                  class="card__link"
+                >
+                  <div class="link__icon">
+                    <i class="fab fa-facebook"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a
+                  href="https://www.instagram.com/hoaih207"
+                  target="_blank"
+                  class="card__link"
+                >
+                  <div class="link__icon">
+                    <i class="fab fa-instagram"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a
+                  href="https://www.threads.net/@hoaih207"
+                  target="_blank"
+                  class="card__link"
+                >
+                  <div class="link__icon">
+                    <i class="fas fa-at"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a
+                  href="https://t.me/hoaih207"
+                  target="_blank"
+                  class="card__link"
+                >
+                  <div class="link__icon">
+                    <i class="fab fa-telegram"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a
+                  href="https://www.tiktok.com/@hoaihh207"
+                  target="_blank"
+                  class="card__link"
+                >
+                  <div class="link__icon">
+                    <i class="fab fa-tiktok"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a href="https://youtube.com/@hoaihh207" target="_blank" class="card__link">
+                  <div class="link__icon">
+                    <i class="fab fa-youtube" style="color: red"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a href="https://on.soundcloud.com/MaVhDDDRtLRuwKFC8" class="card__link">
+                  <div class="link__icon">
+                    <i class="fab fa-soundcloud" style="color: orange"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col col-lg-3 mt-10">
+              <div class="card__item">
+                <a href="https://x.com/hoaih207" class="card__link">
+                  <div class="link__icon">
+                    <i class="fab fa-twitter"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="toggle toggle__back">
+          <a href="https://x.com/hoaih207"></a>
+            <i class="fas fa-arrow-left"></i
+            ></a>
+        </div>
+        <div class="toggle toggle__theme">
+          <i class="fas fa-moon"></i>
+        </div>
+        <div class="button__list mt-10">
+          <div class="row">
+            <div class="col col-lg-6 mt-10">
+              <a href="https://m.me/Hoaihh207" target="_blank">
+                <div class="button button__message">
+                  <span> Nhắn Tin </span>
+                </div>
+              </a>
+            </div>
+            <div class="col col-lg-6 mt-10">
+              <a href="https://www.facebook.com/share/1Ad6xUPfFZ/" target="_blank">
+                <div class="button button__subscribe">
+                  <span> Theo Dõi </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card__footer mt-10">
+          <div class="footer__item">
+            <span>
+              <i class="fas fa-heart"></i>
+              333.3k
+            </span>
+          </div>
+          <div class="footer__item">
+            <span>
+              <i class="fa fa-comment"></i>
+              333.3k
+            </span>
+          </div>
+          <div class="footer__item">
+            <span>
+              <i class="fa fa-share"></i>
+              333.3k
+            </span>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+    <script src="./notification.js"></script>
+  </body>
+</html>
+
+<div class="btnbg">
+</div>>
+>
+
+
+<!-- sakura shader -->
+<script id="sakura_point_vsh" type="x-shader/x_vertex">
+uniform mat4 uProjection;
+uniform mat4 uModelview;
+uniform vec3 uResolution;
+uniform vec3 uOffset;
+uniform vec3 uDOF;  //x:focus distance, y:focus radius, z:max radius
+uniform vec3 uFade; //x:start distance, y:half distance, z:near fade start
+
+attribute vec3 aPosition;
+attribute vec3 aEuler;
+attribute vec2 aMisc; //x:size, y:fade
+
+varying vec3 pposition;
+varying float psize;
+varying float palpha;
+varying float pdist;
+
+//varying mat3 rotMat;
+varying vec3 normX;
+varying vec3 normY;
+varying vec3 normZ;
+varying vec3 normal;
+
+varying float diffuse;
+varying float specular;
+varying float rstop;
+varying float distancefade;
+
+void main(void) {
+    // Projection is based on vertical angle
+    vec4 pos = uModelview * vec4(aPosition + uOffset, 1.0);
+    gl_Position = uProjection * pos;
+    gl_PointSize = aMisc.x * uProjection[1][1] / -pos.z * uResolution.y * 0.5;
+    
+    pposition = pos.xyz;
+    psize = aMisc.x;
+    pdist = length(pos.xyz);
+    palpha = smoothstep(0.0, 1.0, (pdist - 0.1) / uFade.z);
+    
+    vec3 elrsn = sin(aEuler);
+    vec3 elrcs = cos(aEuler);
+    mat3 rotx = mat3(
+        1.0, 0.0, 0.0,
+        0.0, elrcs.x, elrsn.x,
+        0.0, -elrsn.x, elrcs.x
+    );
+    mat3 roty = mat3(
+        elrcs.y, 0.0, -elrsn.y,
+        0.0, 1.0, 0.0,
+        elrsn.y, 0.0, elrcs.y
+    );
+    mat3 rotz = mat3(
+        elrcs.z, elrsn.z, 0.0, 
+        -elrsn.z, elrcs.z, 0.0,
+        0.0, 0.0, 1.0
+    );
+    mat3 rotmat = rotx * roty * rotz;
+    normal = rotmat[2];
+    
+    mat3 trrotm = mat3(
+        rotmat[0][0], rotmat[1][0], rotmat[2][0],
+        rotmat[0][1], rotmat[1][1], rotmat[2][1],
+        rotmat[0][2], rotmat[1][2], rotmat[2][2]
+    );
+    normX = trrotm[0];
+    normY = trrotm[1];
+    normZ = trrotm[2];
+    
+    const vec3 lit = vec3(0.6917144638660746, 0.6917144638660746, -0.20751433915982237);
+    
+    float tmpdfs = dot(lit, normal);
+    if(tmpdfs < 0.0) {
+        normal = -normal;
+        tmpdfs = dot(lit, normal);
+    }
+    diffuse = 0.4 + tmpdfs;
+    
+    vec3 eyev = normalize(-pos.xyz);
+    if(dot(eyev, normal) > 0.0) {
+        vec3 hv = normalize(eyev + lit);
+        specular = pow(max(dot(hv, normal), 0.0), 20.0);
+    }
+    else {
+        specular = 0.0;
+    }
+    
+    rstop = clamp((abs(pdist - uDOF.x) - uDOF.y) / uDOF.z, 0.0, 1.0);
+    rstop = pow(rstop, 0.5);
+    //-0.69315 = ln(0.5)
+    distancefade = min(1.0, exp((uFade.x - pdist) * 0.69315 / uFade.y));
+}
+</script>
+<script id="sakura_point_fsh" type="x-shader/x_fragment">
+#ifdef GL_ES
+//precision mediump float;
+precision highp float;
+#endif
+
+uniform vec3 uDOF;  //x:focus distance, y:focus radius, z:max radius
+uniform vec3 uFade; //x:start distance, y:half distance, z:near fade start
+
+const vec3 fadeCol = vec3(0.08, 0.03, 0.06);
+
+varying vec3 pposition;
+varying float psize;
+varying float palpha;
+varying float pdist;
+
+//varying mat3 rotMat;
+varying vec3 normX;
+varying vec3 normY;
+varying vec3 normZ;
+varying vec3 normal;
+
+varying float diffuse;
+varying float specular;
+varying float rstop;
+varying float distancefade;
+
+float ellipse(vec2 p, vec2 o, vec2 r) {
+    vec2 lp = (p - o) / r;
+    return length(lp) - 1.0;
+}
+
+void main(void) {
+    vec3 p = vec3(gl_PointCoord - vec2(0.5, 0.5), 0.0) * 2.0;
+    vec3 d = vec3(0.0, 0.0, -1.0);
+    float nd = normZ.z; //dot(-normZ, d);
+    if(abs(nd) < 0.0001) discard;
+    
+    float np = dot(normZ, p);
+    vec3 tp = p + d * np / nd;
+    vec2 coord = vec2(dot(normX, tp), dot(normY, tp));
+    
+    //angle = 15 degree
+    const float flwrsn = 0.258819045102521;
+    const float flwrcs = 0.965925826289068;
+    mat2 flwrm = mat2(flwrcs, -flwrsn, flwrsn, flwrcs);
+    vec2 flwrp = vec2(abs(coord.x), coord.y) * flwrm;
+    
+    float r;
+    if(flwrp.x < 0.0) {
+        r = ellipse(flwrp, vec2(0.065, 0.024) * 0.5, vec2(0.36, 0.96) * 0.5);
+    }
+    else {
+        r = ellipse(flwrp, vec2(0.065, 0.024) * 0.5, vec2(0.58, 0.96) * 0.5);
+    }
+    
+    if(r > rstop) discard;
+    
+    vec3 col = mix(vec3(1.0, 0.8, 0.75), vec3(1.0, 0.9, 0.87), r);
+    float grady = mix(0.0, 1.0, pow(coord.y * 0.5 + 0.5, 0.35));
+    col *= vec3(1.0, grady, grady);
+    col *= mix(0.8, 1.0, pow(abs(coord.x), 0.3));
+    col = col * diffuse + specular;
+    
+    col = mix(fadeCol, col, distancefade);
+    
+    float alpha = (rstop > 0.001)? (0.5 - r / (rstop * 2.0)) : 1.0;
+    alpha = smoothstep(0.0, 1.0, alpha) * palpha;
+    
+    gl_FragColor = vec4(col * 0.5, alpha);
+}
+</script>
+<!-- effects -->
+<script id="fx_common_vsh" type="x-shader/x_vertex">
+uniform vec3 uResolution;
+attribute vec2 aPosition;
+
+varying vec2 texCoord;
+varying vec2 screenCoord;
+
+void main(void) {
+    gl_Position = vec4(aPosition, 0.0, 1.0);
+    texCoord = aPosition.xy * 0.5 + vec2(0.5, 0.5);
+    screenCoord = aPosition.xy * vec2(uResolution.z, 1.0);
+}
+</script>
+<script id="bg_fsh" type="x-shader/x_fragment">
+#ifdef GL_ES
+//precision mediump float;
+precision highp float;
+#endif
+
+uniform vec2 uTimes;
+
+varying vec2 texCoord;
+varying vec2 screenCoord;
+
+void main(void) {
+    vec3 col;
+    float c;
+    vec2 tmpv = texCoord * vec2(0.8, 1.0) - vec2(0.95, 1.0);
+    c = exp(-pow(length(tmpv) * 1.8, 2.0));
+    col = mix(vec3(0.02, 0.0, 0.03), vec3(0.96, 0.98, 1.0) * 1.5, c);
+    gl_FragColor = vec4(col * 0.5, 1.0);
+}
+</script>
+<script id="fx_brightbuf_fsh" type="x-shader/x_fragment">
+#ifdef GL_ES
+//precision mediump float;
+precision highp float;
+#endif
+uniform sampler2D uSrc;
+uniform vec2 uDelta;
+
+varying vec2 texCoord;
+varying vec2 screenCoord;
+
+void main(void) {
+    vec4 col = texture2D(uSrc, texCoord);
+    gl_FragColor = vec4(col.rgb * 2.0 - vec3(0.5), 1.0);
+}
+</script>
+<script id="fx_dirblur_r4_fsh" type="x-shader/x_fragment">
+#ifdef GL_ES
+//precision mediump float;
+precision highp float;
+#endif
+uniform sampler2D uSrc;
+uniform vec2 uDelta;
+uniform vec4 uBlurDir; //dir(x, y), stride(z, w)
+
+varying vec2 texCoord;
+varying vec2 screenCoord;
+
+void main(void) {
+    vec4 col = texture2D(uSrc, texCoord);
+    col = col + texture2D(uSrc, texCoord + uBlurDir.xy * uDelta);
+    col = col + texture2D(uSrc, texCoord - uBlurDir.xy * uDelta);
+    col = col + texture2D(uSrc, texCoord + (uBlurDir.xy + uBlurDir.zw) * uDelta);
+    col = col + texture2D(uSrc, texCoord - (uBlurDir.xy + uBlurDir.zw) * uDelta);
+    gl_FragColor = col / 5.0;
+}
+</script>
+<!-- effect fragment shader template -->
+<script id="fx_common_fsh" type="x-shader/x_fragment">
+#ifdef GL_ES
+//precision mediump float;
+precision highp float;
+#endif
+uniform sampler2D uSrc;
+uniform vec2 uDelta;
+
+varying vec2 texCoord;
+varying vec2 screenCoord;
+
+void main(void) {
+    gl_FragColor = texture2D(uSrc, texCoord);
+}
+</script>
+<!-- post processing -->
+<script id="pp_final_vsh" type="x-shader/x_vertex">
+uniform vec3 uResolution;
+attribute vec2 aPosition;
+varying vec2 texCoord;
+varying vec2 screenCoord;
+void main(void) {
+    gl_Position = vec4(aPosition, 0.0, 1.0);
+    texCoord = aPosition.xy * 0.5 + vec2(0.5, 0.5);
+    screenCoord = aPosition.xy * vec2(uResolution.z, 1.0);
+}
+</script>
+<script id="pp_final_fsh" type="x-shader/x_fragment">
+#ifdef GL_ES
+//precision mediump float;
+precision highp float;
+#endif
+uniform sampler2D uSrc;
+uniform sampler2D uBloom;
+uniform vec2 uDelta;
+varying vec2 texCoord;
+varying vec2 screenCoord;
+void main(void) {
+    vec4 srccol = texture2D(uSrc, texCoord) * 2.0;
+    vec4 bloomcol = texture2D(uBloom, texCoord);
+    vec4 col;
+    col = srccol + bloomcol * (vec4(1.0) + srccol);
+    col *= smoothstep(1.0, 0.0, pow(length((texCoord - vec2(0.5)) * 2.0), 1.2) * 0.5);
+    col = pow(col, vec4(0.45454545454545)); //(1.0 / 2.2)
+    
+    gl_FragColor = vec4(col.rgb, 1.0);
+    gl_FragColor.a = 1.0;
+}
+</script>
